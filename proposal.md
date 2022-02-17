@@ -22,7 +22,7 @@ TODO
 
 Tom is one of the top movie producers in Hollywood. He produced a number of Oscar award winning movies and his latest movie "MDS" won 7 academy awards. He is determined to break the record of 11 academy awards won by a movie. In view of his achievements in the past years, Tom receives great support from investors, so he is not concerned about the budget and profit. With the aim to make the best movie ever, he wants to know,
 1. Which genre would be highly rated? What is the past trend?
-2. Is modern movies better?
+2. Are modern movies better?
 3. Which actors should be chosen?
 4. Which country produce the best movies?
 
