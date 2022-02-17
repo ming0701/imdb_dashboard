@@ -24,7 +24,7 @@ Tom is one of the top movie producers in Hollywood. He produced a number of Osca
 1. Which genre would be highly rated? What is the past trend?
 2. Are modern movies better?
 3. Which actors should be chosen?
-4. Which country produce the best movies?
+4. Which countries produce the best movies?
 
 When Tom logs on to the imdb_dashboard app, he will see a worldmap showing the average movie rating across countries. Also, he can compare movie rating across different genres. There are also plots showing average movie ratings over time and top rated movies by actors. There are additional functions in the navigation pane that he can filter the movies by year, actor, genre and location. The plots will also be interactive that users can get more information by hovering over a point in the plots.
 
