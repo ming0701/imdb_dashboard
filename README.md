@@ -1,6 +1,6 @@
 # imdb_dashboard
 
-The IMDb dashboard is primarily targeted towards movie producers to present a consolidated crisp view of the revenue, ratings and runtime for all movies across regions with interactive abilities to help them choose and plan their next movie.
+The IMDb dashboard is primarily targeted towards movie producers to present a consolidated crisp view of the average ratings and runtime for movies by genres and regions with interactive abilities to help them choose and plan their next movie.
 
 ## Dashboard description
 
