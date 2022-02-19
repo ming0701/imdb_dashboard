@@ -10,13 +10,13 @@ The global film industry is a multi-billion dollar industry which produces hundr
 Many of these movies are not highly rated and thus are not particularly enjoyed by audiences.
 However, some movies perform exceptionally well and receive extremely high ratings from many movie-watchers.
 Our client is looking to make an impact in the film industry by producing a new movie with the highest ratings possible.
-They want to be remembered as a fantastic producer, so they are really focusing on movie ratings rather than how much revenue of profit they generate.
+They want to be remembered as a fantastic producer, so they are really focusing on movie ratings rather than how much revenue or profit they generate.
 Our dashboard will show the various factors that affect a movie's rating and will allow the producer to explore and filter the data to see which characteristics of a movie make it most likely to be highly rated.
 This will enable the producer to know how to design their movie such that it receives high ratings from many people.
 
 ## Description of the data
 
-TODO
+The opensource IMDb movies dataset used for creating the dashboard is available [here](https://www.kaggle.com/ashirwadsangwan/imdb-dataset?select=title.akas.tsv.gz). The ~800MB tabular data is spread across 5 files containing different attributes of the movie titles like geographic information (region, language), movie information (primaryTitle, startYear, genres, runtimeMinutes), cast and crew information (category, job), IMDb rating and votes information (averageRating, numVotes), and actor demographic information (primaryName, primaryProfession, knownforTitles). The different data tables will be cleansed and the above listed key fields will be consolidated to form a single dataset that will drive the dashboard application.
 
 ## Research questions and usage scenarios
 
