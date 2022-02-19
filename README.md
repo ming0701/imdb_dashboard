@@ -20,7 +20,7 @@ This is a line chart showing the years on the x-axis and the mean rating per gen
 
 - The top rated movies by actor
 
-This is a bubble chart where each bubble represents an actor and the size and color of the bubble represents the number of movies that actor performed in. The user can choose the number of actors that are depicted for each year using a slider.
+This is a bubble chart where each bubble represents an actor and the size and color of the bubble represents the number of movies that the actor performed in and the label indicates the average rating of those movies. The user can choose the number of actors that are depicted for each year using a slider.
 
 - A map showing summary statistics about movies produced in each region
 
