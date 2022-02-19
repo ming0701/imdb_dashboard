@@ -2,11 +2,15 @@
 
 ## Dashboard description
 
-Our dashboard consists of one web page that shows 4 main reactive plots:
+Our dashboard consists of one web page that shows overall summary and 4 main reactive plots:
 
-- The top rated movies by genre
+- The high level totals
 
-This is a bar chart showing the genres on the x-axis and some kind of aggregation (e.g. count or average rating) on the y-axis. Each of the individual bars is also coloured by genre.
+These are a set of 4 numeric totals showing the total count of movies, the average runtime across all movies, the total number of actors across all movies, and the average rating of all movies based on the filters applied.
+
+- The proportion of movies by genre
+
+This is a box plot showing the genres on the x-axis and the count of movies on the y-axis. The box plots will be categorized by a categorical column, for e.g., top 3 regions.
 
 - How movie ratings vary over time
 
@@ -14,13 +18,13 @@ This is a line chart showing the years on the x-axis and the mean rating per gen
 
 - The top rated movies by actor
 
-This is a bubble graph showing the mean rating on the y-axis and the year on the x-axis. Each bubble represents an actor and the size of the bubble represents the number of movies that that actor performed in. The user can choose the number of actors that are depicted for each year using a slider.
+This is a bubble graph where each bubble represents an actor and the size and color of the bubble represents the number of movies that that actor performed in. The user can choose the number of actors that are depicted for each year using a slider.
 
 - A map showing summary statistics about movies produced in each region
 
 Our dataset contains information from various regions around the world, so this map can be used to explore how movie characteristics vary by region. The map will show an aggregation for the movies produced in a particular region (e.g. the mean rating, the count, or mean number of ratings).
 
-Additionally, we include a set of filters in a navigation pane on the left-hand side which allows used to filter the dataset by year, by actors, by genres, or by location. Changing these filters will update the data that is used to generate the plots. The displayed charts will be interactive enabling users to get more granular information by hovering over a point in a scatterplot or a bar in a bar graph.
+Additionally, the filters in the navigation pane on the left-hand side allows users to filter the dataset by genres, regions, or actors. Further below we have individual sliders to adjust top N (actors/regions/genres), minimum rating, year range to filter for, runtime to filter for. Finally, there is a set of radio buttons that allows the user to switch the numeric metric between average runtime and average rating. Changing these filters will update the data that is used to generate the plots. The displayed charts will be interactive enabling users to get more granular information through tooltips by hovering over the visuals/data points.
 
 ## App sketch
 
