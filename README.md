@@ -10,7 +10,7 @@ Our dashboard consists of one web page that shows overall summary and 4 main rea
 
 These are a set of 4 numeric totals showing the total count of movies, the average runtime across all movies, the total number of actors across all movies, and the average rating of all movies based on the filters applied.
 
-- The proportion of movies by genre
+- The distribution of movies by genre
 
 This is a box plot showing the genres on the x-axis and the count of movies on the y-axis. The box plots will be categorized by a categorical column, for e.g., top 3 regions.
 
@@ -20,7 +20,7 @@ This is a line chart showing the years on the x-axis and the mean rating per gen
 
 - The top rated movies by actor
 
-This is a bubble graph where each bubble represents an actor and the size and color of the bubble represents the number of movies that that actor performed in. The user can choose the number of actors that are depicted for each year using a slider.
+This is a bubble chart where each bubble represents an actor and the size and color of the bubble represents the number of movies that actor performed in. The user can choose the number of actors that are depicted for each year using a slider.
 
 - A map showing summary statistics about movies produced in each region
 
