@@ -13,10 +13,17 @@ def generate_line_plot(data: pd.DataFrame):
 
     Returns
     -------
-    chart : altair Chart
-        The generated line chart
+    chart : html of altair Chart
+        The generated line chart converted to html
     """
-    ...  # TODO: implement
+    # TODO: make the x/y/colour changeable
+    chart = alt.Chart(data).mark_line().encode(
+        x="year",
+        y="rating",
+        color="genre"
+    )  # TODO: implement
+
+    return chart.to_html()
 
 
 if __name__ == "__main__":
