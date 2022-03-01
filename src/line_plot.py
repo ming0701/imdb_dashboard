@@ -2,7 +2,7 @@ import altair as alt
 import pandas as pd
 
 
-def generate_line_plot(data: pd.DataFrame):
+def generate_line_plot(data: pd.DataFrame, ycol: str):
     """"
     Generates the line chart for the dashboard
 
@@ -18,9 +18,9 @@ def generate_line_plot(data: pd.DataFrame):
     """
     # TODO: make the x/y/colour changeable
     chart = alt.Chart(data).mark_line().encode(
-        x="year",
-        y="rating",
-        color="genre"
+        x="startYear",
+        y=ycol,
+        color="genres"
     )  # TODO: implement
 
     return chart.to_html()
