@@ -12,22 +12,25 @@ app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
-            html.Iframe(
-                id='line'),
             dcc.Dropdown(
                 id='ycol',
                 value='averageRating',
-                options=[{'label': "averageRating", 'value': "averageRating"}])
+                options=[{'label': "Rating", 'value': "averageRating"},
+                         {"label": "Runtime", "value": "runtimeMinutes"}])
+        ]),
+        dbc.Col([
+            html.Iframe(
+                id='line',
+                style={'width': '100%', 'height': '400px'})
             ])
         ])
     ])
 
 
-# TODO: this is kinda gross
 @app.callback(
     Output('line', 'srcDoc'),
     Input('ycol', 'value'))
-def plot_altair(ycol):
+def serve_line_plot(ycol):
     chart = generate_line_plot(data, ycol)
     return chart
 

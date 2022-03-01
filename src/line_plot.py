@@ -24,8 +24,3 @@ def generate_line_plot(data: pd.DataFrame, ycol: str):
     )  # TODO: implement
 
     return chart.to_html()
-
-
-if __name__ == "__main__":
-    data = None  # TODO: wait for Brandon to make the data
-    generate_line_plot(data)
