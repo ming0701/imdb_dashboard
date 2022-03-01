@@ -16,11 +16,16 @@ def generate_line_plot(data: pd.DataFrame, ycol: str):
     chart : html of altair Chart
         The generated line chart converted to html
     """
-    # TODO: make the x/y/colour changeable
+    # Set up dynamic axis labels
+    if ycol == "averageRating":
+        label = "Rating"
+    if ycol == "runtimeMinutes":
+        label = "Runtime"
+
     chart = alt.Chart(data).mark_line().encode(
-        x="startYear",
-        y=ycol,
+        x=alt.X("startYear", axis=alt.Axis(title="Year"), scale=alt.Scale(domain=(1970, 2020))),
+        y=alt.Y(ycol, axis=alt.Axis(title=label)),  # TODO: average this
         color="genres"
-    )  # TODO: implement
+    )
 
     return chart.to_html()
