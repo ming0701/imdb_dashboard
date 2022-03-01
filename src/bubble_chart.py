@@ -23,8 +23,12 @@ def bubble_chart_gen(data, x, y):
     chart = alt.Chart(
         data=data
     ).encode(
-        x=x,
-        y=y
+        x=alt.X(x,
+                axis=None),
+        y=alt.Y(y,
+                axis=None),
+        size=y,
+        color=x
     ).mark_circle(
     )
 
