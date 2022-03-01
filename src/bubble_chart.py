@@ -19,3 +19,13 @@ def bubble_chart_gen(data, x, y):
     chart : html of altair Chart
         The generated bubble chart converted to html
     """
+
+    chart = alt.Chart(
+        data=data
+    ).encode(
+        x=x,
+        y=y
+    ).mark_circle(
+    )
+
+    return chart
