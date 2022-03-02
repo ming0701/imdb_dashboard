@@ -19,6 +19,7 @@ def bar_chart_gen(data, x, y):
     chart : html of altair Chart
         The generated bar chart converted to html
     """
+    alt.renderers.set_embed_options(theme='dark')
 
     chart = alt.Chart(
         data=data,
@@ -37,6 +38,9 @@ def bar_chart_gen(data, x, y):
                                         domain=[15, 3]),
                         legend=None)
     ).mark_bar(
+    ).properties(
+        width=500,
+        height=300
     )
 
     return chart
