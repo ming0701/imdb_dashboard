@@ -1,7 +1,7 @@
 import pandas as pd
 import altair as alt
 
-def bar_chart_gen(data):
+def bar_chart_gen(data, genrelist = []):
     """
     Generate the horizontal bar chart to show top actors in the top rated movies.
 
@@ -9,10 +9,8 @@ def bar_chart_gen(data):
     ----------
     data : pandas dataframe
         Dataframe containing the data to plot.
-    x : string
-        Column name to plot on the x-axis.
-    y : string
-        Column name to plot on the y-axis.
+    genrelist : list
+        List of genres to filter for.
     
     Results
     -------
@@ -23,6 +21,10 @@ def bar_chart_gen(data):
     x = 'primaryName'
     y = 'averageRating'
 
+    # filtering data for genres
+    if genrelist != []:
+        data = data.loc[data['genres'].isin(genrelist)]
+
     chart = alt.Chart(
         data=data,
         title="Top 15 Actors from the best rated movies"
@@ -32,7 +34,7 @@ def bar_chart_gen(data):
                 axis=None),
         y=alt.Y(y,
                 title="",
-                sort=-x),
+                sort='-x'),
         size=alt.Size(x,
                   legend=None),
         color=alt.Color(x,
@@ -49,9 +51,9 @@ def bar_chart_gen(data):
         data=data,
         title=""
     ).encode(
-        x=alt.X('Average Rating',
+        x=alt.X(x,
                 axis=None),
-        y=alt.Y('Actor Name',
+        y=alt.Y(y,
                 sort='-x')
     ).mark_circle(
     )
@@ -62,7 +64,7 @@ def bar_chart_gen(data):
         dx=-5,
         dy=0
     ).encode(
-        text='Average Rating',
+        text=y,
         color=alt.value('white')
     )
 
@@ -70,4 +72,4 @@ def bar_chart_gen(data):
                 grid=False
             ).configure_view(
                 strokeWidth=0
-            )
+            ).to_html()
