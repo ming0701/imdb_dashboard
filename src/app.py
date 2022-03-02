@@ -19,7 +19,6 @@ region_list = list(region_data)
 
 # Setup app and layout/frontend
 app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-server = app.server
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
@@ -44,7 +43,7 @@ app.layout = dbc.Container([
                 style={'width': '100%', 'height': '400px'})
             ]),
             html.Div([
-                "Region(color) for boxplot",
+                html.H6("Region(color) for boxplot"),
                 dcc.Dropdown(
                     id='region', value = 'US',
                     options=[{'label': i, 'value': i} for i in region_list],
