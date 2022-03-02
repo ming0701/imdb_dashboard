@@ -29,10 +29,13 @@ def bubble_chart_gen(data, x, y):
                 axis=None),
         y=alt.Y(y,
                 title="",
-                sort='-x'),
+                sort=-x),
         size=alt.Size(x,
                   legend=None),
-        color=x
+        color=alt.Color(x,
+                        scale=alt.Scale(scheme="darkgold",
+                                        domain=[15, 3]),
+                        legend=None)
     ).mark_circle(
     )
 
