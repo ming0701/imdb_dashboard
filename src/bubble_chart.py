@@ -1,9 +1,9 @@
 import pandas as pd
 import altair as alt
 
-def bubble_chart_gen(data, x, y):
+def bar_chart_gen(data, x, y):
     """
-    Generate the bubble chart.
+    Generate the horizontal bar chart to show top actors in the top rated movies.
 
     Parameters
     ----------
@@ -17,7 +17,7 @@ def bubble_chart_gen(data, x, y):
     Results
     -------
     chart : html of altair Chart
-        The generated bubble chart converted to html
+        The generated bar chart converted to html
     """
 
     chart = alt.Chart(
@@ -36,7 +36,7 @@ def bubble_chart_gen(data, x, y):
                         scale=alt.Scale(scheme="darkgold",
                                         domain=[15, 3]),
                         legend=None)
-    ).mark_circle(
+    ).mark_bar(
     )
 
     return chart
