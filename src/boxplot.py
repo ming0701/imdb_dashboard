@@ -21,10 +21,6 @@ def generate_boxplot(data: pd.DataFrame, region: str):
     data = data.drop(['primaryName','Unnamed: 0','nconst'], axis=1)
     data = data.drop_duplicates()
     
-    # filter by genres and rating
-    #data = data[(data['genres'] == genres) &
-    #            (data['averageRating'] >= rating) ]
-    
     # Create Boxplot
     chart = alt.Chart(data, title = 'Distribution of movies by genre').mark_boxplot().encode(
         x=alt.X('genres', axis=alt.Axis(title="Genre")),
