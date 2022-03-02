@@ -63,5 +63,9 @@ def bar_chart_gen(data, x, y):
         text='Average Rating',
         color=alt.value('white')
     )
-    
-    return chart
+
+    return (chart + text).configure_axis(
+                grid=False
+            ).configure_view(
+                strokeWidth=0
+            )
