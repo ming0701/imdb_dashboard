@@ -1,4 +1,5 @@
 from line_plot import generate_line_plot
+from bar_chart import bar_chart_gen
 from dash import Dash, html, dcc, Input, Output
 import altair as alt
 import dash_bootstrap_components as dbc
@@ -6,7 +7,7 @@ import pandas as pd
 
 
 alt.data_transformers.enable('data_server')
-data = pd.read_csv("imdb_small.csv")
+data = pd.read_csv("imdb_2011-2020.csv")
 
 # TODO: add filters for genres, should be possible to select multiple things
 # This selection should affect all plots
@@ -18,7 +19,12 @@ app.layout = dbc.Container([
         dbc.Col([
             html.Iframe(
                 id='line',
-                style={'width': '100%', 'height': '400px'})
+                style={'width': '100%', 'height': '400px'}
+                ),
+            html.Iframe(
+                id='bar',
+                style={'width': '100%', 'height': '400px'}
+                )
             ]),
             html.Div([
                 "Y-axis for line chart",
@@ -26,7 +32,7 @@ app.layout = dbc.Container([
                     id='ycol',
                     value='averageRating',
                     options=[{'label': "Rating", 'value': "averageRating"},
-                            {"label": "Runtime", "value": "runtimeMinutes"}])
+                             {'label': "Runtime", 'value': "runtimeMinutes"}])
             ])
         ])
     ])
@@ -37,6 +43,12 @@ app.layout = dbc.Container([
     Input('ycol', 'value'))
 def serve_line_plot(ycol):
     chart = generate_line_plot(data, ycol)
+    return chart
+
+@app.callback(
+    Output('bar', 'srcDoc'))
+def serve_bar_chart():
+    chart = bar_chart_gen(data)
     return chart
 
 if __name__ == '__main__':
