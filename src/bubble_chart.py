@@ -43,4 +43,15 @@ def bar_chart_gen(data, x, y):
         height=300
     )
 
+    chart_text = alt.Chart(
+        data=actors,
+        title=""
+    ).encode(
+        x=alt.X('Average Rating',
+                axis=None),
+        y=alt.Y('Actor Name',
+                sort='-x')
+    ).mark_circle(
+    )
+
     return chart
