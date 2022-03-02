@@ -21,13 +21,17 @@ def bubble_chart_gen(data, x, y):
     """
 
     chart = alt.Chart(
-        data=data
+        data=data,
+        title="Top 15 Actors from the best rated movies"
     ).encode(
         x=alt.X(x,
+                title="",
                 axis=None),
         y=alt.Y(y,
-                axis=None),
-        size=y,
+                title="",
+                sort='-x'),
+        size=alt.Size(x,
+                  legend=None),
         color=x
     ).mark_circle(
     )
