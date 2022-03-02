@@ -28,6 +28,6 @@ def generate_line_plot(data: pd.DataFrame, ycol: str):
         x=alt.X("startYear", axis=alt.Axis(title="Year"), scale=alt.Scale(domain=(2008, 2020))),
         y=alt.Y(ycol, axis=alt.Axis(title=label)),  # TODO: average this
         color="genres"
-    ).interactive()
+    ).interactive()  # TODO: tooltip
 
     return chart.to_html()
