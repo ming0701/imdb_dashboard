@@ -5,8 +5,9 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 
 
-alt.data_transformers.enable('data_server')
-data = pd.read_csv("imdb_small.csv")
+alt.data_transformers.enable("data_server")
+alt.renderers.set_embed_options(theme="darkgold")  # TODO: this
+data = pd.read_csv("imdbtemp.csv")
 
 # TODO: add filters for genres, should be possible to select multiple things
 # This selection should affect all plots
@@ -15,6 +16,13 @@ data = pd.read_csv("imdb_small.csv")
 app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container([
     dbc.Row([
+        dbc.Col([
+            dbc.Checklist(
+                options=[{"label": genre, "value": genre} for genre in data.genres.unique()],
+                value=[1],
+                id="genres-checklist",
+            ),
+        ]),
         dbc.Col([
             html.Iframe(
                 id='line',
