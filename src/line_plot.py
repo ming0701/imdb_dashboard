@@ -18,9 +18,11 @@ def generate_line_plot(data: pd.DataFrame, ycol: str):
     """
     # Set up dynamic axis labels
     if ycol == "averageRating":
-        label = "Rating"
+        label = "Average Rating (/10)"
     if ycol == "runtimeMinutes":
-        label = "Runtime"
+        label = "Average Runtime (minutes)"
+    
+    ycol = f"mean({ycol})"
 
     chart = alt.Chart(data).mark_line().encode(
         x=alt.X("startYear", axis=alt.Axis(title="Year"), scale=alt.Scale(domain=(2008, 2020))),

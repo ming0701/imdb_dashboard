@@ -17,6 +17,7 @@ app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container([
     dbc.Row([
         dbc.Col([
+            html.H1("IMDB Dashboard"),
             dbc.Checklist(
                 options=[{"label": genre, "value": genre} for genre in data.genres.unique()],
                 value=[1],
