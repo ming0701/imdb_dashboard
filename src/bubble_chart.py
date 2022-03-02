@@ -54,4 +54,14 @@ def bar_chart_gen(data, x, y):
     ).mark_circle(
     )
 
+    text = chart_text.mark_text(
+        align='right',
+        baseline='middle',
+        dx=-5,
+        dy=0
+    ).encode(
+        text='Average Rating',
+        color=alt.value('white')
+    )
+    
     return chart
