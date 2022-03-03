@@ -152,7 +152,7 @@ app.layout = dbc.Container([
                     dbc.Row([
                         html.Div([
                             html.H6(
-                                "Average Revenue by Genre over time",
+                                "Average Rating by Genre over time",
                                 style={'width': "500px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
                             )
                         ])
