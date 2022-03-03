@@ -10,6 +10,10 @@ def generate_boxplot(data: pd.DataFrame, region: str):
     ----------
     data : pandas dataframe
         The dataframe that contains the data to plot.
+        
+    region : string
+        The categories to plot. This must be
+        a column from the `data` dataframe.
 
     Returns
     -------
