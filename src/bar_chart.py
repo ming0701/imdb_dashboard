@@ -37,8 +37,7 @@ def bar_chart_gen(data, genrelist = []):
     actors
 
     chart = alt.Chart(
-        data=actors,
-        title="Top 15 Actors from the best rated movies"
+        data=actors
     ).encode(
         x=alt.X(x,
                 title="",
@@ -63,7 +62,7 @@ def bar_chart_gen(data, genrelist = []):
                 axis=None),
         y=alt.Y(y,
                 sort='-x')
-    ).mark_circle(
+    ).mark_bar(
     )
 
     text = chart_text.mark_text(
@@ -80,4 +79,12 @@ def bar_chart_gen(data, genrelist = []):
                 grid=False
             ).configure_view(
                 strokeWidth=0
+            ).configure_axisLeft(
+                labelColor='#DBA506',
+                titleColor='#DBA506'
+            ).configure_axisRight(
+                labelColor='#DBA506',
+                titleColor='#DBA506'
+            ).properties(
+                background='#222222'
             ).to_html()
