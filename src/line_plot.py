@@ -29,10 +29,31 @@ def generate_line_plot(data: pd.DataFrame, ycol: str):
     ycol = f"mean({ycol})"
 
     chart = alt.Chart(data).mark_line().encode(
-        x=alt.X("startYear", axis=alt.Axis(title="Year", format='.0f'), scale=alt.Scale(domain=(2011, 2020))),
-        y=alt.Y(ycol, axis=alt.Axis(title=label)),
+        x=alt.X("startYear",
+                axis=alt.Axis(title="Year",
+                              grid=False,
+                              format='.0f'),
+                scale=alt.Scale(domain=(2011, 2020))),
+        y=alt.Y(ycol,
+                axis=alt.Axis(title=label)),
         color=alt.Color("genres", title="Genre"),
-    ).interactive()
-    # chart += chart.mark_point()
+    )
+    
+    chart = chart + chart.mark_circle()
 
-    return chart.to_html()
+    chart = chart.interactive()
+
+    return chart.configure_axisLeft(
+                labelColor='#DBA506',
+                titleColor='#DBA506'
+            ).configure_view(
+                strokeWidth=0
+            ).configure_axisBottom(
+                labelColor='#DBA506',
+                titleColor='#DBA506'
+            ).configure_legend(
+                labelColor='#DBA506',
+                titleColor='#DBA506'
+            ).properties(
+                background='#222222'
+            ).to_html()
