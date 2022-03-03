@@ -1,26 +1,31 @@
 from line_plot import generate_line_plot
-from boxplot import generate_boxplot
 from dash import Dash, html, dcc, Input, Output
 import altair as alt
 import dash_bootstrap_components as dbc
 import pandas as pd
 
 
-#alt.data_transformers.enable('data_server')
-alt.data_transformers.disable_max_rows()
-
-data = pd.read_csv("imdb_small.csv")
-
-# TODO: add filters for genres, should be possible to select multiple things
-# This selection should affect all plots
-
-region_data = data["region"].dropna().unique() 
-region_list = list(region_data)
+alt.data_transformers.enable("data_server")
+alt.renderers.set_embed_options(theme='dark')  # FIXME: this doesn't work
+data = pd.read_csv("imdb_2011-2020.csv")
 
 # Setup app and layout/frontend
-app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = Dash(external_stylesheets=[dbc.themes.DARKLY])
 app.layout = dbc.Container([
+    dcc.Store(id="filtered-data"),  # Used to store the data as it is filtered
     dbc.Row([
+        dbc.Col([
+            html.H1("IMDB Dashboard"),
+            dbc.Checklist(
+                options=[
+                    {"label": genre, "value": genre} for genre in sorted(
+                        data.genres.unique().astype(str)
+                        ) if genre != "nan"
+                    ],
+                value=["Action", "Comedy", "Horror"],
+                id="genres-checklist",
+            ),
+        ]),
         dbc.Col([
             html.Iframe(
                 id='line',
@@ -34,44 +39,27 @@ app.layout = dbc.Container([
                     options=[{'label': "Rating", 'value': "averageRating"},
                             {"label": "Runtime", "value": "runtimeMinutes"}])
             ])
-        ]),
-    #boxplot
-    dbc.Row([
-        dbc.Col([
-            html.Iframe(
-                id='box',
-                style={'width': '100%', 'height': '400px'})
-            ]),
-            html.Div([
-                html.H6("Region(color) for boxplot"),
-                dcc.Dropdown(
-                    id='region', value = 'US',
-                    options=[{'label': i, 'value': i} for i in region_list],
-                    multi=True
-                )
-            ])
+        ])
     ])
-])
 
-# callback for line plot
+
 @app.callback(
     Output('line', 'srcDoc'),
+    Input('filtered-data', 'data'),
     Input('ycol', 'value'))
-
-def serve_line_plot(ycol):
-    chart = generate_line_plot(data, ycol)
+def serve_line_plot(df, ycol):
+    df = pd.read_json(df)  # Convert the filtered data from a json string to a df
+    chart = generate_line_plot(df, ycol)
     return chart
 
-# callback for box plot
 @app.callback(
-    Output('box', 'srcDoc'),
-    Input('region', 'value'))
+    Output("filtered-data", "data"),
+    Input("genres-checklist", "value")
+)
+def update_data(genres: list):
+    filtered_data = data[data.genres.isin(genres)]
 
-def serve_boxplot(region):
-    chart_2 = generate_boxplot(data, region)
-    return chart_2
+    return filtered_data.to_json()
 
 if __name__ == '__main__':
     app.run_server(debug=True)
-    
-    
