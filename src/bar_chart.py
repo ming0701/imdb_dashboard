@@ -18,15 +18,26 @@ def bar_chart_gen(data, genrelist = []):
         The generated bar chart converted to html
     """
     alt.renderers.set_embed_options(theme='dark')
-    x = 'primaryName'
-    y = 'averageRating'
+    x = 'averageRating'
+    y = 'primaryName'
 
     # filtering data for genres
     if genrelist != []:
         data = data.loc[data['genres'].isin(genrelist)]
 
+    top = 15
+    actors = (data[[x, y]]
+            .groupby([y])[x]
+            .mean()
+            .sort_values(ascending=False)
+            .head(top))
+    actors = pd.DataFrame.from_dict(actors)
+    actors = actors.reset_index()
+    actors.columns = [y, x]
+    actors
+
     chart = alt.Chart(
-        data=data,
+        data=actors,
         title="Top 15 Actors from the best rated movies"
     ).encode(
         x=alt.X(x,
@@ -42,13 +53,10 @@ def bar_chart_gen(data, genrelist = []):
                                         domain=[15, 3]),
                         legend=None)
     ).mark_bar(
-    ).properties(
-        width=500,
-        height=300
     )
 
     chart_text = alt.Chart(
-        data=data,
+        data=actors,
         title=""
     ).encode(
         x=alt.X(x,
@@ -64,7 +72,7 @@ def bar_chart_gen(data, genrelist = []):
         dx=-5,
         dy=0
     ).encode(
-        text=y,
+        text=x,
         color=alt.value('white')
     )
 
