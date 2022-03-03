@@ -9,7 +9,7 @@ import pandas as pd
 
 alt.data_transformers.enable("data_server")
 alt.renderers.set_embed_options(theme='dark')  # FIXME: this doesn't work
-data = pd.read_csv("imdb_2011-2020.csv")
+data = pd.read_csv("data/imdb_2011-2020.csv")
 
 # Setup app and layout/frontend
 app = Dash(external_stylesheets=[dbc.themes.DARKLY])
