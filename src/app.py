@@ -13,6 +13,7 @@ data = pd.read_csv("imdb_2011-2020.csv")
 
 # Setup app and layout/frontend
 app = Dash(external_stylesheets=[dbc.themes.DARKLY])
+server = app.server
 app.layout = dbc.Container([
     dcc.Store(id="filtered-data"),  # Used to store the data as it is filtered
     
