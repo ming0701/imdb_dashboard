@@ -86,5 +86,7 @@ def bar_chart_gen(data, genrelist = []):
                 labelColor='#DBA506',
                 titleColor='#DBA506'
             ).properties(
+                height=300,
+                width=300,
                 background='#222222'
             ).to_html()
