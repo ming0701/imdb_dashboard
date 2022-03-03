@@ -6,12 +6,10 @@ import altair as alt
 import dash_bootstrap_components as dbc
 import pandas as pd
 
+
 alt.data_transformers.enable("data_server")
 alt.renderers.set_embed_options(theme='dark')  # FIXME: this doesn't work
 data = pd.read_csv("imdb_2011-2020.csv")
-
-# TODO: add filters for genres, should be possible to select multiple things
-# This selection should affect all plots
 
 # Setup app and layout/frontend
 app = Dash(external_stylesheets=[dbc.themes.DARKLY])
@@ -85,6 +83,15 @@ def serve_bar_chart(df):
     df = pd.read_json(df)  # Convert the filtered data from a json string to a df
     chart = bar_chart_gen(df)
     return chart
+
+@app.callback(
+    Output("filtered-data", "data"),
+    Input("genres-checklist", "value")
+)
+def update_data(genres: list):
+    filtered_data = data[data.genres.isin(genres)]
+
+    return filtered_data.to_json()
 
 if __name__ == '__main__':
     app.run_server(debug=True)
