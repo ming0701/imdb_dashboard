@@ -16,37 +16,49 @@ app = Dash(external_stylesheets=[dbc.themes.DARKLY])
 app.layout = dbc.Container([
     dcc.Store(id="filtered-data"),  # Used to store the data as it is filtered
     dbc.Row([
-        dbc.Col([html.H1("IMDB Dashboard")])
+        dbc.Col([
+            html.H1("IMDB Dashboard", style={'color': "#DBA506"}),
+        ])
     ]),
     dbc.Row([
         dbc.Col([
-            dbc.Checklist(
-                options=[
-                    {"label": genre, "value": genre} for genre in sorted(
-                        data.genres.unique().astype(str)
-                        ) if genre != "nan"
-                    ],
-                value=["Action", "Comedy", "Horror"],
-                id="genres-checklist",
-                style={'width': '100px', 'height': '100%'}
-                ),
             html.Div([
-                "Y-axis for line chart",
+                html.H5("Select Genres", style={'background': "#DBA506"}),
+                dbc.Checklist(
+                    options=[
+                        {"label": genre, "value": genre} for genre in sorted(
+                            data.genres.unique().astype(str)
+                            ) if genre != "nan"
+                        ],
+                    value=["Action", "Comedy", "Horror"],
+                    id="genres-checklist",
+                    style={'width': '120px', 'height': '100%'}
+                    )
+                ]),
+            html.Div([
+                html.H5("Y-axis for line chart:", style={'background': "#DBA506"}),
                 dcc.Dropdown(
                     id='ycol',
-                    style={'width': '100px', 'height': '100%'},
+                    style={'width': '120px', 'height': '100%'},
                     value='averageRating',
                     options=[{'label': "Rating", 'value': "averageRating"},
-                             {"label": "Runtime", "value": "runtimeMinutes"}])
+                             {"label": "Runtime", "value": "runtimeMinutes"}]
+                    )
                 ])
             ]),
         dbc.Col([
+            dbc.Row([
+                html.H5("Average Revenue by Genre over time", style={'background': "#DBA506"})
+            ]),
             dbc.Row([
                 html.Iframe(
                     id='line',
                     style={'width': '100%', 'height': '400px'}
                     )
                 ]),
+            dbc.Row([
+                html.H5("Top 15 Actors from the best rated movies", style={'background': "#DBA506"}),
+            ]),
             dbc.Row([
                 html.Iframe(
                     id='bar',
@@ -83,15 +95,6 @@ def serve_bar_chart(df):
     df = pd.read_json(df)  # Convert the filtered data from a json string to a df
     chart = bar_chart_gen(df)
     return chart
-
-@app.callback(
-    Output("filtered-data", "data"),
-    Input("genres-checklist", "value")
-)
-def update_data(genres: list):
-    filtered_data = data[data.genres.isin(genres)]
-
-    return filtered_data.to_json()
 
 if __name__ == '__main__':
     app.run_server(debug=True)
