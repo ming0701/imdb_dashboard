@@ -36,7 +36,9 @@ def generate_line_plot(data: pd.DataFrame, ycol: str):
                 scale=alt.Scale(domain=(2011, 2020))),
         y=alt.Y(ycol,
                 axis=alt.Axis(title=label)),
-        color=alt.Color("genres", title="Genre"),
+        color=alt.Color("genres",
+                        legend=alt.Legend(title="",
+                                          orient="bottom")),
     )
     
     chart = chart + chart.mark_circle()
@@ -55,5 +57,7 @@ def generate_line_plot(data: pd.DataFrame, ycol: str):
                 labelColor='#DBA506',
                 titleColor='#DBA506'
             ).properties(
+                height=250,
+                width=300,
                 background='#222222'
             ).to_html()
