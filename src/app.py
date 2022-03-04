@@ -255,16 +255,6 @@ app.layout = dbc.Container([
     ])
 ])
 
-# Map plot
-# dbc.Row([
-#     html.Div([
-#         html.Iframe(
-#             id='map',
-#             style={'width': "500px", 'height': "400px"}
-#         )
-#     ])
-# ])
-
 # Callback to filter data based on filter values
 @app.callback(
     Output("filtered-data", "data"),
