@@ -23,8 +23,7 @@ def generate_map(df: pd.DataFrame):
     # Get the top rated movie for each country code
     df = df.groupby(["country_code"]).apply(lambda x: x.sort_values(["averageRating"], ascending=False)).reset_index(drop=True)
     df = df[["primaryTitle", "country_code", "averageRating"]].drop_duplicates().groupby(["country_code"]).head(1)
-
-    print(df)
+    df["fill"] = 1  # Colour the map only if the country exists
 
     map = alt.Chart(
         world_map
@@ -33,12 +32,16 @@ def generate_map(df: pd.DataFrame):
         strokeWidth=0.3
     ).transform_lookup(
         lookup="id",
-        from_=alt.LookupData(df, "country_code", ["averageRating", "primaryTitle"])
+        from_=alt.LookupData(df, "country_code", ["averageRating", "primaryTitle", "fill"])
     ).encode(
-        tooltip=alt.Tooltip(["averageRating:Q", "primaryTitle:N"])
+        tooltip=alt.Tooltip(["averageRating:Q", "primaryTitle:N"]),
+        color=alt.Color("fill:N", scale=alt.Scale(
+            domain=[None, 1],
+            range=["black", "gold"]
+        ), legend=None)
     ).project(type="equalEarth")
 
-    # TODO: tooltip
+    # TODO: black background
     # TODO: the layout is fricked
 
     return map.to_html()
