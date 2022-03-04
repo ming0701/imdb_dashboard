@@ -209,33 +209,36 @@ app.layout = dbc.Container([
                         width="auto"
                         )
                     ]),
-                    # Map plot
-                    dbc.Row([
-                        html.Div([
-                            html.Iframe(
-                                id='map',
-                                style={'width': "500px", 'height': "400px"}
-                            )
-                        ])
-                    ])
                 ],
                 width={'size': "auto", 'offset': 0}
                 )
             ]),
             dbc.Row([
-                html.Div([
-                    html.H6(
-                        "Top 15 Actors from the best rated movies",
-                        style={'width': "500px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
-                    ),
-                ])
+                dbc.Col([
+                    html.Div([
+                        html.H6(
+                            "Top 15 Actors from the best rated movies",
+                            style={'width': "500px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
+                        ),
+                    ])
+                ]),
             ]),
             dbc.Row([
-                html.Div([
-                    html.Iframe(
-                        id='bar',
-                        style={'width': "500px", 'height': "400px"}
-                    )
+                dbc.Col([
+                    html.Div([
+                        html.Iframe(
+                            id='bar',
+                            style={'width': "500px", 'height': "400px"}
+                        )
+                    ])
+                ]),
+                dbc.Col([
+                    html.Div([
+                        html.Iframe(
+                            id='map',
+                            style={'width': "500px", 'height': "400px"}
+                        )
+                    ])
                 ])
             ])
         ],
@@ -243,6 +246,16 @@ app.layout = dbc.Container([
         )
     ])
 ])
+
+# Map plot
+# dbc.Row([
+#     html.Div([
+#         html.Iframe(
+#             id='map',
+#             style={'width': "500px", 'height': "400px"}
+#         )
+#     ])
+# ])
 
 # Callback to filter data based on filter values
 @app.callback(
