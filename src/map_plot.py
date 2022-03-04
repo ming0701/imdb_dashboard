@@ -18,8 +18,13 @@ def generate_map(df: pd.DataFrame):
     chart : html of altair Chart
         The generated map converted to html
     """
-    country_codes = pd.read_csv("data/country_codes.csv")  # TODO: move me to app.py and merge with df?
     world_map = alt.topo_feature(data.world_110m.url, "countries")
+
+    # Get the top rated movie for each country code
+    df = df.groupby(["country_code"]).apply(lambda x: x.sort_values(["averageRating"], ascending=False)).reset_index(drop=True)
+    df = df[["primaryTitle", "country_code", "averageRating"]].drop_duplicates().groupby(["country_code"]).head(1)
+
+    print(df)
 
     map = alt.Chart(
         world_map
@@ -28,12 +33,11 @@ def generate_map(df: pd.DataFrame):
         strokeWidth=0.3
     ).transform_lookup(
         lookup="id",
-        from_=alt.LookupData(country_codes, "country_code", ["name"])
+        from_=alt.LookupData(df, "country_code", ["averageRating", "primaryTitle"])
     ).encode(
-        tooltip="name:N"
+        tooltip=alt.Tooltip(["averageRating:Q", "primaryTitle:N"])
     ).project(type="equalEarth")
 
-    # TODO: find country IDs and map them to our codes
     # TODO: tooltip
     # TODO: the layout is fricked
 

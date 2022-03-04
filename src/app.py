@@ -11,6 +11,8 @@ import pandas as pd
 
 alt.data_transformers.enable("data_server")
 data = pd.read_csv("data/imdb_2011-2020.csv")
+country_codes = pd.read_csv("data/country_codes.csv")
+data = pd.merge(data, country_codes, left_on="region", right_on="alpha_2")
 
 # Setup app and layout/frontend
 app = Dash(external_stylesheets=[dbc.themes.DARKLY])
@@ -41,12 +43,11 @@ app.layout = dbc.Container([
                             data.genres.unique().astype(str)
                             ) if genre != "nan"
                         ],
-                    value=["Action", "Crime", "Horror", "Mystery", "Romance", "Sci-Fi", "Thriller"],
+                    value=["Action", "Horror", "Romance"],
                     id="genres-checklist",
                     style={'width': "150px", 'height': "100%"}
                 ),
-            # ]),
-            # html.Div([
+                # Region dropdown
                 html.H6(
                     "Select Region(s):",
                     style={'width': "150px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
@@ -280,9 +281,9 @@ def serve_line_plot(df, ycol):
     Output('map', 'srcDoc'),
     Input('filtered-data', 'data'),
 )
-def serve_map(df, ):
+def serve_map(df):
     df = pd.read_json(df)  # Convert the filtered data from a json string to a df
-    chart = generate_map(df)
+    chart = generate_map(df)  # TODO: the map shouldn't receive filtered data!!
     return chart
 
 # Bar Chart

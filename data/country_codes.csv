@@ -1,4 +1,4 @@
-name,alpha_2,alpha_3,country_code,iso_3166-2,region,sub_region,intermediate_region,region_code,sub_region_code,intermediate_region_code
+name,alpha_2,alpha_3,country_code,iso_3166-2,continent,sub_region,intermediate_region,region_code,sub_region_code,intermediate_region_code
 Afghanistan,AF,AFG,004,ISO 3166-2:AF,Asia,Southern Asia,"",142,034,""
 Åland Islands,AX,ALA,248,ISO 3166-2:AX,Europe,Northern Europe,"",150,154,""
 Albania,AL,ALB,008,ISO 3166-2:AL,Europe,Southern Europe,"",150,039,""
