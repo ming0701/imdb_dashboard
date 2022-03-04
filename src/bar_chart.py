@@ -1,31 +1,27 @@
 import pandas as pd
 import altair as alt
 
-def bar_chart_gen(data, genrelist = []):
+def generate_bar_chart(data, top=15):
     """
     Generate the horizontal bar chart to show top actors in the top rated movies.
 
     Parameters
     ----------
     data : pandas dataframe
-        Dataframe containing the data to plot.
-    genrelist : list
-        List of genres to filter for.
+           Dataframe containing the data to plot.
+    top : int
+          Number of actors to show. 
     
     Results
     -------
     chart : html of altair Chart
-        The generated bar chart converted to html
+            The generated bar chart converted to html
     """
+
     alt.renderers.set_embed_options(theme='dark')
     x = 'averageRating'
     y = 'primaryName'
 
-    # filtering data for genres
-    if genrelist != []:
-        data = data.loc[data['genres'].isin(genrelist)]
-
-    top = 15
     actors = (data[[x, y]]
             .groupby([y])[x]
             .mean()

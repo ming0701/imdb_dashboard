@@ -2,7 +2,7 @@ import altair as alt
 import pandas as pd
 
 
-def generate_boxplot(data: pd.DataFrame, region: str):
+def generate_box_plot(data: pd.DataFrame):
     """"
     Generates the boxplot for the dashboard
 
@@ -10,10 +10,6 @@ def generate_boxplot(data: pd.DataFrame, region: str):
     ----------
     data : pandas dataframe
         The dataframe that contains the data to plot.
-        
-    region : string
-        The categories to plot. This must be
-        a column from the `data` dataframe.
 
     Returns
     -------
@@ -22,13 +18,34 @@ def generate_boxplot(data: pd.DataFrame, region: str):
     """
 
     # Prepare data for boxplot
-    data = data.drop(['primaryName','Unnamed: 0','nconst'], axis=1)
+    data = data.drop(['primaryName','Unnamed: 0'], axis=1)
     data = data.drop_duplicates()
     
     # Create Boxplot
-    chart = alt.Chart(data, title = 'Distribution of movies by genre').mark_boxplot().encode(
-        x=alt.X('genres', axis=alt.Axis(title="Genre")),
-        y=alt.Y('averageRating', axis=alt.Axis(title="IMDB Rating")),
-        color='region')
+    chart = alt.Chart(data).mark_boxplot(size=25).encode(
+        x=alt.X('genres',
+                axis=alt.Axis(title="Genre", labelAngle=-45)),
+        y=alt.Y('averageRating',
+                axis=alt.Axis(title="IMDB Rating")),
+        color=alt.Color('region',
+                        legend=alt.Legend(title="Region"))
+    )
 
-    return chart.to_html()
+    return chart.configure_axis(
+                grid=False
+            ).configure_view(
+                strokeWidth=0
+            ).configure_axisLeft(
+                labelColor='#DBA506',
+                titleColor='#DBA506'
+            ).configure_axisBottom(
+                labelColor='#DBA506',
+                titleColor='#DBA506'
+            ).configure_legend(
+                labelColor='#DBA506',
+                titleColor='#DBA506'
+            ).properties(
+                height=250,
+                width=315,
+                background='#222222'
+            ).to_html()

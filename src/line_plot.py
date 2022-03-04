@@ -1,4 +1,5 @@
 import altair as alt
+from numpy import row_stack
 import pandas as pd
 
 
@@ -38,7 +39,11 @@ def generate_line_plot(data: pd.DataFrame, ycol: str):
                 axis=alt.Axis(title=label)),
         color=alt.Color("genres",
                         legend=alt.Legend(title="",
-                                          orient="bottom")),
+                                          orient='none',
+                                          columns=5,
+                                          legendX=20,
+                                          legendY=240,
+                                          direction='horizontal')),
     )
     
     chart = chart + chart.mark_circle()
@@ -57,7 +62,7 @@ def generate_line_plot(data: pd.DataFrame, ycol: str):
                 labelColor='#DBA506',
                 titleColor='#DBA506'
             ).properties(
-                height=250,
-                width=300,
+                height=200,
+                width=315,
                 background='#222222'
             ).to_html()
