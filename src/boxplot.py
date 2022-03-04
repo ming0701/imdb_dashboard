@@ -27,8 +27,6 @@ def generate_box_plot(data: pd.DataFrame):
                 axis=alt.Axis(title="Genre", labelAngle=-45)),
         y=alt.Y('averageRating',
                 axis=alt.Axis(title="IMDB Rating")),
-        color=alt.Color('region',
-                        legend=alt.Legend(title="Region"))
     )
 
     return chart.configure_axis(
