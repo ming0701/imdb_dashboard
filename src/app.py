@@ -2,6 +2,7 @@
 from boxplot import generate_box_plot
 from line_plot import generate_line_plot
 from bar_chart import generate_bar_chart
+from map_plot import generate_map
 from dash import Dash, html, dcc, Input, Output
 import altair as alt
 import dash_bootstrap_components as dbc
@@ -10,6 +11,8 @@ import pandas as pd
 
 alt.data_transformers.enable("data_server")
 data = pd.read_csv("data/imdb_2011-2020.csv")
+country_codes = pd.read_csv("data/country_codes.csv")
+data = pd.merge(data, country_codes, left_on="region", right_on="alpha_2")
 
 # Setup app and layout/frontend
 app = Dash(external_stylesheets=[dbc.themes.DARKLY])
@@ -40,12 +43,11 @@ app.layout = dbc.Container([
                             data.genres.unique().astype(str)
                             ) if genre != "nan"
                         ],
-                    value=["Action", "Crime", "Horror", "Mystery", "Romance", "Sci-Fi", "Thriller"],
+                    value=["Action", "Horror", "Romance"],
                     id="genres-checklist",
                     style={'width': "150px", 'height': "100%"}
                 ),
-            # ]),
-            # html.Div([
+                # Region dropdown
                 html.H6(
                     "Select Region(s):",
                     style={'width': "150px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
@@ -206,25 +208,45 @@ app.layout = dbc.Container([
                         ],
                         width="auto"
                         )
-                    ])
+                    ]),
                 ],
                 width={'size': "auto", 'offset': 0}
                 )
             ]),
             dbc.Row([
-                html.Div([
-                    html.H6(
-                        "Top 15 Actors from the best rated movies",
-                        style={'width': "500px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
-                    ),
-                ])
+                dbc.Col([
+                    html.Div([
+                        html.H6(
+                            "Top 15 Actors from the best rated movies",
+                            style={'width': "500px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
+                        ),
+                    ])
+                ]),
+                dbc.Col([
+                    html.Div([
+                        html.H6(
+                            "Top rated movie in each region",
+                            style={'width': "500px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
+                        ),
+                    ])
+                ]),
             ]),
             dbc.Row([
-                html.Div([
-                    html.Iframe(
-                        id='bar',
-                        style={'width': "500px", 'height': "400px"}
-                    )
+                dbc.Col([
+                    html.Div([
+                        html.Iframe(
+                            id='bar',
+                            style={'width': "500px", 'height': "400px"}
+                        )
+                    ])
+                ]),
+                dbc.Col([
+                    html.Div([
+                        html.Iframe(
+                            id='map',
+                            style={'width': "500px", 'height': "400px"}
+                        )
+                    ])
                 ])
             ])
         ],
@@ -263,6 +285,16 @@ def serve_box_plot(df):
 def serve_line_plot(df, ycol):
     df = pd.read_json(df)  # Convert the filtered data from a json string to a df
     chart = generate_line_plot(df, ycol)
+    return chart
+
+# Map Plot
+@app.callback(
+    Output('map', 'srcDoc'),
+    Input('filtered-data', 'data'),
+)
+def serve_map(df):
+    df = pd.read_json(df)  # Convert the filtered data from a json string to a df
+    chart = generate_map(df)  # TODO: the map shouldn't receive filtered data!!
     return chart
 
 # Bar Chart
