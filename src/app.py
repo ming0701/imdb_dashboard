@@ -2,6 +2,7 @@
 from boxplot import generate_box_plot
 from line_plot import generate_line_plot
 from bar_chart import generate_bar_chart
+from map_plot import generate_map
 from dash import Dash, html, dcc, Input, Output
 import altair as alt
 import dash_bootstrap_components as dbc
@@ -206,6 +207,15 @@ app.layout = dbc.Container([
                         ],
                         width="auto"
                         )
+                    ]),
+                    # Map plot
+                    dbc.Row([
+                        html.Div([
+                            html.Iframe(
+                                id='map',
+                                style={'width': "500px", 'height': "400px"}
+                            )
+                        ])
                     ])
                 ],
                 width={'size': "auto", 'offset': 0}
@@ -263,6 +273,16 @@ def serve_box_plot(df):
 def serve_line_plot(df, ycol):
     df = pd.read_json(df)  # Convert the filtered data from a json string to a df
     chart = generate_line_plot(df, ycol)
+    return chart
+
+# Map Plot
+@app.callback(
+    Output('map', 'srcDoc'),
+    Input('filtered-data', 'data'),
+)
+def serve_map(df, ):
+    df = pd.read_json(df)  # Convert the filtered data from a json string to a df
+    chart = generate_map(df)
     return chart
 
 # Bar Chart
