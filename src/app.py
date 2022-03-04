@@ -10,6 +10,8 @@ import pandas as pd
 
 
 alt.data_transformers.enable("data_server")
+alt.renderers.set_embed_options(actions=False)
+
 data = pd.read_csv("data/imdb_2011-2020.csv")
 country_codes = pd.read_csv("data/country_codes.csv")
 data = pd.merge(data, country_codes, left_on="region", right_on="alpha_2")
@@ -86,7 +88,7 @@ app.layout = dbc.Container([
                         html.Div([
                             html.H2(
                                 "100",
-                                style={'width': "150px", 'height': "50px", 'text-align': "center", 'vertical-align': "middle", 'color': "#DBA506"}
+                                style={'width': "150px", 'height': "60px", 'text-align': "center", 'vertical-align': "middle", 'color': "#DBA506", 'border': "1px solid gold"}
                             )
                         ]),
                     ]),
@@ -103,7 +105,7 @@ app.layout = dbc.Container([
                         html.Div([
                             html.H2(
                                 "50",
-                                style={'width': "150px", 'height': "50px", 'text-align': "center", 'vertical-align': "middle", 'color': "#DBA506"}
+                                style={'width': "150px", 'height': "60px", 'text-align': "center", 'vertical-align': "middle", 'color': "#DBA506", 'border': "1px solid gold"}
                             )
                         ])
                     ]),
@@ -120,7 +122,7 @@ app.layout = dbc.Container([
                         html.Div([
                             html.H2(
                                 "120",
-                                style={'width': "150px", 'height': "50px", 'text-align': "center", 'vertical-align': "middle", 'color': "#DBA506"}
+                                style={'width': "150px", 'height': "60px", 'text-align': "center", 'vertical-align': "middle", 'color': "#DBA506", 'border': "1px solid gold"}
                             )
                         ])
                     ]),
@@ -137,7 +139,7 @@ app.layout = dbc.Container([
                         html.Div([
                             html.H2(
                                 "10",
-                                style={'width': "150px", 'height': "50px", 'text-align': "center", 'vertical-align': "middle", 'color': "#DBA506"}
+                                style={'width': "150px", 'height': "60px", 'text-align': "center", 'vertical-align': "middle", 'color': "#DBA506", 'border': "1px solid gold"}
                             )
                         ])
                     ])  
@@ -158,7 +160,7 @@ app.layout = dbc.Container([
                         html.Div([
                             html.Iframe(
                                 id='box',
-                                style={'width': "500px", 'height': "350px"}
+                                style={'width': "500px", 'height': "350px", 'border': "1px solid gold"}
                             )
                         ])
                     ])
@@ -171,7 +173,7 @@ app.layout = dbc.Container([
                         html.Div([
                             html.H6(
                                 "Average Rating by Genre over Time",
-                                style={'width': "400px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
+                                style={'width': "420px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
                             )
                         ])
                     ]),
@@ -179,7 +181,7 @@ app.layout = dbc.Container([
                         html.Div([
                             html.Iframe(
                                 id='line',
-                                style={'width': "400px", 'height': "320px"}
+                                style={'width': "420px", 'height': "320px", 'border': "1px solid gold"}
                             )
                         ])
                     ]),
@@ -218,7 +220,7 @@ app.layout = dbc.Container([
                     html.Div([
                         html.H6(
                             "Top 15 Actors from the best rated movies",
-                            style={'width': "500px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
+                            style={'width': "340px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
                         ),
                     ])
                 ]),
@@ -226,7 +228,7 @@ app.layout = dbc.Container([
                     html.Div([
                         html.H6(
                             "Top rated movie in each region",
-                            style={'width': "500px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
+                            style={'width': "750px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
                         ),
                     ])
                 ]),
@@ -236,7 +238,7 @@ app.layout = dbc.Container([
                     html.Div([
                         html.Iframe(
                             id='bar',
-                            style={'width': "500px", 'height': "400px"}
+                            style={'width': "340px", 'height': "350px", 'border': "1px solid gold"}
                         )
                     ])
                 ]),
@@ -244,7 +246,7 @@ app.layout = dbc.Container([
                     html.Div([
                         html.Iframe(
                             id='map',
-                            style={'width': "500px", 'height': "400px"}
+                            style={'width': "750px", 'height': "350px", 'border': "1px solid gold"}
                         )
                     ])
                 ])
