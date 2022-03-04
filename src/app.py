@@ -222,6 +222,14 @@ app.layout = dbc.Container([
                         ),
                     ])
                 ]),
+                dbc.Col([
+                    html.Div([
+                        html.H6(
+                            "Top rated movie in each region",
+                            style={'width': "500px", 'color': "#000000", 'font-weight': "bold", 'background': "#DBA506"}
+                        ),
+                    ])
+                ]),
             ]),
             dbc.Row([
                 dbc.Col([

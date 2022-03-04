@@ -39,7 +39,7 @@ def generate_map(df: pd.DataFrame):
             domain=[None, 1],
             range=["black", "gold"]
         ), legend=None)
-    ).project(type="equalEarth")
+    ).project(type="equalEarth").configure(background='#222222')
 
     # TODO: black background
     # TODO: the layout is fricked
