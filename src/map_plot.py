@@ -41,4 +41,10 @@ def generate_map(df: pd.DataFrame):
         ), legend=None)
     ).project(type="equalEarth").configure(background='#222222')
 
-    return map.to_html()
+    return map.configure_view(
+                strokeWidth=0
+            ).properties(
+                height=300,
+                width=660,
+                background='#222222'
+            ).to_html()

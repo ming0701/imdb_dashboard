@@ -83,6 +83,6 @@ def generate_bar_chart(data, top=15):
                 titleColor='#DBA506'
             ).properties(
                 height=300,
-                width=300,
+                width=170,
                 background='#222222'
             ).to_html()
