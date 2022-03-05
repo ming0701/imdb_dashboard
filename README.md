@@ -2,6 +2,14 @@
 
 The IMDb dashboard is primarily targeted towards movie producers to present a consolidated crisp view of the average ratings and runtime for movies by genres and regions with interactive abilities to help them choose and plan their next movie.
 
+## Usage
+The link to the app is [here](https://imdbdashboardpy.herokuapp.com/)
+
+Usage examples:
+- Select genre from the navigation pane on the left-hand side to filter the plots by genres.
+- Select region from the navigation pane on the left-hand side to filter the plots by region.
+- Hover over the selected region on the map to view top rated movie of the region.
+
 ## Dashboard description
 
 Our dashboard consists of one web page that shows overall summary and 4 main reactive plots:
@@ -10,17 +18,17 @@ Our dashboard consists of one web page that shows overall summary and 4 main rea
 
 These are a set of 4 numeric totals showing the total count of movies, the average runtime across all movies, the total number of actors across all movies, and the average rating of all movies based on the filters applied.
 
-- The distribution of movies by genre
+- The distribution of movie rating by genre
 
-This is a box plot showing the genres on the x-axis and the count of movies on the y-axis. The box plots will be categorized by a categorical column, for e.g., top 3 regions.
+This is a box plot showing the movie rating distribution by genre.
 
 - How movie ratings vary over time
 
-This is a line chart showing the years on the x-axis and the mean rating per genre on the y-axis. The individual lines may be coloured by other features such as genre or region of production.
+This is a line chart showing the years on the x-axis and the mean rating or runtime on the y-axis. The individual lines may be coloured by the genre.
 
-- The top rated movies by actor
+- The top actors from the best rated movies
 
-This is a bubble chart where each bubble represents an actor and the size and color of the bubble represents the number of movies that the actor performed in and the label indicates the average rating of those movies. The user can choose the number of actors that are depicted for each year using a slider.
+This is a bar chart showing the top actors from the best rated movies with the movie rating. The user can choose the number of actors that are depicted for each year using a slider.
 
 - A map showing summary statistics about movies produced in each region
 
@@ -41,6 +49,17 @@ Additionally, the filters in the navigation pane on the left-hand side allows us
 |  Nikita Shymberg  |  @NikitaShymberg |
 
 We welcome and recognize all contributions. Please find the guide for contribution in [Contributing Document](https://github.com/UBC-MDS/imdb_dashboard/blob/main/CONTRIBUTING.md).
+
+## Installation
+To run the app locally:
+1. Install the necessary packages listed in `requirements.txt` using `pip` or `conda`
+2. Clone this repo 
+3. Navigate to the root of this repo
+4. In the command line, enter
+```
+python src/app.py
+```
+5. Copy and paste http://127.0.0.1:8050/ to a browser to run the Dash app.
 
 ## License
 
