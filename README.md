@@ -24,7 +24,7 @@ This is a box plot showing the movie rating distribution by genre.
 
 - How movie ratings vary over time
 
-This is a line chart showing the years on the x-axis and the mean rating or runtime on the y-axis. The individual lines may be coloured by the genre.
+This is a line chart showing the years on the x-axis and the mean rating or runtime on the y-axis. The individual lines are coloured by the genre. The user can choose the average rating or average runtime for the y-axis.
 
 - The top actors from the best rated movies
 
@@ -32,9 +32,9 @@ This is a bar chart showing the top actors from the best rated movies with the m
 
 - A map showing summary statistics about movies produced in each region
 
-Our dataset contains information from various regions around the world, so this map can be used to explore how movie characteristics vary by region. The map will show an aggregation for the movies produced in a particular region (e.g. the mean rating, the count, or mean number of ratings).
+Our dataset contains information from various regions around the world, so this map can be used to explore how movie characteristics vary by region. The map will show an aggregation for the movies produced in a particular region (e.g. top movie title and the mean rating).
 
-Additionally, the filters in the navigation pane on the left-hand side allows users to filter the dataset by genres, regions, or actors. Further below we have individual sliders to adjust top N (actors/regions/genres), minimum rating, year range to filter for, runtime to filter for. Finally, there is a set of radio buttons that allows the user to switch the numeric metric between average runtime and average rating. Changing these filters will update the data that is used to generate the plots. The displayed charts will be interactive enabling users to get more granular information through tooltips by hovering over the visuals/data points.
+Additionally, the filters in the navigation pane on the left-hand side allows users to filter the dataset by genres, regions, or actors. Further below we have individual sliders to adjust top N (actors/regions/genres), minimum rating, year range to filter for, runtime to filter for. Changing these filters will update the data that is used to generate the plots. The displayed charts will be interactive enabling users to get more granular information through tooltips by hovering over the visuals/data points.
 
 ## App sketch
 
